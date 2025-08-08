@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { FileUpload } from '@/components/FileUpload';
 import { JobCard } from '@/components/JobCard';
 import { toast } from "sonner";
-import { FileText, Sparkles } from 'lucide-react';
+import { FileText, Sparkles, Zap, Upload } from 'lucide-react';
 
 interface JobInfo {
   job_title: string | null;
@@ -93,19 +93,25 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-background">
       {/* Header */}
-      <header className="bg-card shadow-card border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-gradient-primary rounded-lg">
-              <FileText className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">
-                Job Notification PDF Summarizer
-              </h1>
-              <p className="text-muted-foreground">
-                Government job notification parser
-              </p>
+      <header className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-primary opacity-10"></div>
+        <div className="relative bg-card/80 backdrop-blur-sm shadow-card border-b border-border/50">
+          <div className="max-w-7xl mx-auto px-6 py-8">
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-primary rounded-xl blur-xl opacity-30 animate-pulse-glow"></div>
+                <div className="relative p-3 bg-gradient-primary rounded-xl shadow-elegant hover-glow transition-all duration-300">
+                  <FileText className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-gradient-primary mb-1">
+                  Job Notification PDF Summarizer
+                </h1>
+                <p className="text-muted-foreground text-lg">
+                  Government job notification parser
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -115,114 +121,152 @@ const Index = () => {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {!jobData ? (
           /* Upload Section */
-          <div className="space-y-8">
-            <div className="text-center max-w-2xl mx-auto">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
+          <div className="space-y-12">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-4xl font-bold text-foreground mb-6">
                 Upload Your Job Notification PDF
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-xl text-muted-foreground leading-relaxed">
                 Upload a government job notification PDF and get an instant structured summary 
                 with all the key information extracted automatically.
               </p>
             </div>
             
-            <FileUpload 
-              onFileSelect={handleFileUpload} 
-              isUploading={isUploading} 
-            />
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-primary/5 rounded-3xl blur-3xl"></div>
+              <div className="relative">
+                <FileUpload 
+                  onFileSelect={handleFileUpload} 
+                  isUploading={isUploading} 
+                />
+              </div>
+            </div>
 
             {/* Features */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16">
-              <div className="text-center p-6 bg-card rounded-xl shadow-card">
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
-                  <FileText className="w-6 h-6 text-white" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-20">
+              <div className="group relative h-full">
+                <div className="absolute inset-0 bg-gradient-primary/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative h-full text-center p-8 bg-card rounded-2xl shadow-card border border-border/50 hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 flex flex-col">
+                  <div className="relative mb-6">
+                    <div className="absolute inset-0 bg-gradient-primary/20 rounded-xl blur-lg"></div>
+                    <div className="relative w-16 h-16 bg-gradient-primary rounded-xl mx-auto flex items-center justify-center shadow-card">
+                      <Sparkles className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-4 text-foreground">Smart Extraction</h3>
+                  <p className="text-muted-foreground leading-relaxed flex-1">
+                    Automatically extracts job titles, departments, eligibility criteria, and more using advanced AI
+                  </p>
                 </div>
-                <h3 className="font-semibold mb-2">Smart Extraction</h3>
-                <p className="text-sm text-muted-foreground">
-                  Automatically extracts job titles, departments, eligibility, and more
-                </p>
               </div>
               
-              <div className="text-center p-6 bg-card rounded-xl shadow-card">
-                <div className="w-12 h-12 bg-gradient-accent rounded-lg mx-auto mb-4 flex items-center justify-center">
-                  <Sparkles className="w-6 h-6 text-accent-foreground" />
+              <div className="group relative h-full">
+                <div className="absolute inset-0 bg-gradient-accent/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative h-full text-center p-8 bg-card rounded-2xl shadow-card border border-border/50 hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 flex flex-col">
+                  <div className="relative mb-6">
+                    <div className="absolute inset-0 bg-gradient-accent/20 rounded-xl blur-lg"></div>
+                    <div className="relative w-16 h-16 bg-gradient-accent rounded-xl mx-auto flex items-center justify-center shadow-card">
+                      <FileText className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-4 text-foreground">Structured Format</h3>
+                  <p className="text-muted-foreground leading-relaxed flex-1">
+                    Converts complex PDFs into clean, organized job cards with all essential details
+                  </p>
                 </div>
-                <h3 className="font-semibold mb-2">Structured Format</h3>
-                <p className="text-sm text-muted-foreground">
-                  Converts complex PDFs into clean, organized job cards
-                </p>
               </div>
               
-              <div className="text-center p-6 bg-card rounded-xl shadow-card">
-                <div className="w-12 h-12 bg-success rounded-lg mx-auto mb-4 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+              <div className="group relative h-full">
+                <div className="absolute inset-0 bg-gradient-success/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative h-full text-center p-8 bg-card rounded-2xl shadow-card border border-border/50 hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 flex flex-col">
+                  <div className="relative mb-6">
+                    <div className="absolute inset-0 bg-gradient-success/20 rounded-xl blur-lg"></div>
+                    <div className="relative w-16 h-16 bg-gradient-success rounded-xl mx-auto flex items-center justify-center shadow-card">
+                      <Zap className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-4 text-foreground">Lightning Fast</h3>
+                  <p className="text-muted-foreground leading-relaxed flex-1">
+                    Process large PDFs in seconds with high accuracy and reliability
+                  </p>
                 </div>
-                <h3 className="font-semibold mb-2">Lightning Fast</h3>
-                <p className="text-sm text-muted-foreground">
-                  Process large PDFs in seconds with high accuracy
-                </p>
               </div>
             </div>
           </div>
         ) : (
           /* Results Section */
           <div className="space-y-8">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-6 bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50">
               <div>
-                <h2 className="text-2xl font-bold text-foreground">
+                <h2 className="text-3xl font-bold text-gradient-primary mb-2">
                   Extraction Results
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-lg">
                   Successfully parsed job notification from {jobData.extraction_summary?.file_name}
                 </p>
               </div>
               <button
                 onClick={handleNewUpload}
-                className="px-4 py-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                className="group px-6 py-3 text-primary hover:text-primary-foreground bg-transparent hover:bg-gradient-primary border-2 border-primary rounded-xl font-medium transition-all duration-300 hover:shadow-card hover:-translate-y-0.5"
               >
+                <Upload className="w-4 h-4 inline-block mr-2" />
                 Upload New PDF
               </button>
             </div>
 
             {jobData.data && (
-              <JobCard
-                jobInfo={jobData.data}
-                fileName={jobData.extraction_summary?.file_name || 'Unknown'}
-                onDownload={handleDownload}
-              />
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-primary/5 rounded-3xl blur-3xl"></div>
+                <div className="relative">
+                  <JobCard
+                    jobInfo={jobData.data}
+                    fileName={jobData.extraction_summary?.file_name || 'Unknown'}
+                    onDownload={handleDownload}
+                  />
+                </div>
+              </div>
             )}
 
             {/* Extraction Summary */}
             {jobData.extraction_summary && (
-              <div className="max-w-4xl mx-auto">
-                <div className="bg-card rounded-xl p-6 shadow-card">
-                  <h3 className="text-lg font-semibold mb-4 text-foreground">
-                    Extraction Summary
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                    <div>
-                      <span className="text-muted-foreground">File Size:</span>
-                      <p className="font-medium">
+              <div className="relative max-w-5xl mx-auto">
+                <div className="absolute inset-0 bg-gradient-accent/5 rounded-2xl blur-2xl"></div>
+                <div className="relative bg-card/80 backdrop-blur-sm rounded-2xl p-8 shadow-card border border-border/50">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 bg-gradient-accent rounded-lg">
+                      <FileText className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">
+                      Extraction Summary
+                    </h3>
+                  </div>
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="text-center p-6 bg-muted/30 rounded-xl border border-border/20 hover:bg-muted/40 transition-colors duration-300">
+                      <div className="text-3xl font-bold text-primary mb-2">
                         {(jobData.extraction_summary.file_size_bytes / 1024 / 1024).toFixed(2)} MB
-                      </p>
+                      </div>
+                      <div className="text-sm text-muted-foreground font-medium">File Size</div>
                     </div>
-                    <div>
-                      <span className="text-muted-foreground">Text Length:</span>
-                      <p className="font-medium">{jobData.extraction_summary.text_length} chars</p>
+                    <div className="text-center p-6 bg-muted/30 rounded-xl border border-border/20 hover:bg-muted/40 transition-colors duration-300">
+                      <div className="text-3xl font-bold text-accent mb-2">
+                        {jobData.extraction_summary.text_length.toLocaleString()}
+                      </div>
+                      <div className="text-sm text-muted-foreground font-medium">Characters</div>
                     </div>
-                    <div>
-                      <span className="text-muted-foreground">Fields Extracted:</span>
-                      <p className="font-medium">
+                    <div className="text-center p-6 bg-muted/30 rounded-xl border border-border/20 hover:bg-muted/40 transition-colors duration-300">
+                      <div className="text-3xl font-bold text-success mb-2">
                         {Object.values(jobData.extraction_summary.extracted_fields).filter(Boolean).length}
-                      </p>
+                      </div>
+                      <div className="text-sm text-muted-foreground font-medium">Fields Extracted</div>
                     </div>
-                    <div>
-                      <span className="text-muted-foreground">Processed:</span>
-                      <p className="font-medium">
-                        {new Date(jobData.extraction_summary.parsing_timestamp).toLocaleTimeString()}
-                      </p>
+                    <div className="text-center p-6 bg-muted/30 rounded-xl border border-border/20 hover:bg-muted/40 transition-colors duration-300">
+                      <div className="text-3xl font-bold text-foreground mb-2">
+                        {new Date(jobData.extraction_summary.parsing_timestamp).toLocaleTimeString([], { 
+                          hour: '2-digit', 
+                          minute: '2-digit' 
+                        })}
+                      </div>
+                      <div className="text-sm text-muted-foreground font-medium">Processed At</div>
                     </div>
                   </div>
                 </div>
@@ -231,6 +275,15 @@ const Index = () => {
           </div>
         )}
       </main>
+
+      {/* Footer */}
+      <footer className="mt-20 border-t border-border/50 bg-card/30 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="text-center text-muted-foreground">
+            <p>Built with ❤️ for efficient government job notification processing</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
