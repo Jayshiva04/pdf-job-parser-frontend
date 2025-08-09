@@ -43,7 +43,7 @@ const Index = () => {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('http://localhost:8000/parse-pdf', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/parse-pdf`, {
         method: 'POST',
         body: formData,
       });
